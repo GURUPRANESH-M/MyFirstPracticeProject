@@ -23,6 +23,10 @@ public class HelloController {
             new User(4,"Sarvesh")
     ));
 
+//    @GetMapping("/hello")
+//    public String hello(){
+//        return "Hello Welcome to Spring Boot";
+//    }
 
     @GetMapping("/hello")
     public ResponseEntity<String> hello(){
