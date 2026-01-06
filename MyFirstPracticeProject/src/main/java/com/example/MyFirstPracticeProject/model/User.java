@@ -1,4 +1,4 @@
-package com.example.MyFirstPracticeProject.controller.model;
+package com.example.MyFirstPracticeProject.model;
 
 
 import jakarta.validation.constraints.Min;

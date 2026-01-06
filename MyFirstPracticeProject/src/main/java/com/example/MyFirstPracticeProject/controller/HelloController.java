@@ -1,7 +1,7 @@
 package com.example.MyFirstPracticeProject.controller;
 
 import com.example.MyFirstPracticeProject.ExceptionHandler.UserNotFoundException;
-import com.example.MyFirstPracticeProject.controller.model.User;
+import com.example.MyFirstPracticeProject.model.User;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
