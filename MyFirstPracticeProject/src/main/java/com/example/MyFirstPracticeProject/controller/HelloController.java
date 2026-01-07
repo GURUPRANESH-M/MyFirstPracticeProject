@@ -58,24 +58,26 @@ public class HelloController {
     }
 
     @GetMapping("/getUser/{id}")
-    public ResponseEntity<Optional<User>> getUserById(@PathVariable int id){
-        Optional<User> u = service.getUserById(id);
-        if(u != null) return new ResponseEntity<>(u,HttpStatus.OK);
-        throw new UserNotFoundException("User not found");
+    public ResponseEntity<User> getUserById(@PathVariable int id){
+        User u = service.getUserById(id);
+        return new ResponseEntity<>(u,HttpStatus.OK);
     }
 
     @PostMapping("/addUser")
     public ResponseEntity<User> addUser(@Valid @RequestBody User u){
-        service.addUser(u);
-        return new ResponseEntity<>(u,HttpStatus.CREATED);
+        User t = service.addUser(u);
+        return new ResponseEntity<>(t,HttpStatus.CREATED);
     }
 
     @DeleteMapping("/deleteById/{id}")
     public ResponseEntity<?> deleteById(@PathVariable int id){
-        service.deleteById(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        Optional<User> u = service.deleteById(id);
+        return new ResponseEntity<>(u,HttpStatus.OK);
+    }
 
-
-
+    @PostMapping("/updateUser/{id}")
+    public ResponseEntity<User> updateUserById(@Valid @RequestBody User u,@PathVariable int id){
+        User t = service.updateUserById(u,id);
+        return ResponseEntity.ok().body(t);
     }
 }

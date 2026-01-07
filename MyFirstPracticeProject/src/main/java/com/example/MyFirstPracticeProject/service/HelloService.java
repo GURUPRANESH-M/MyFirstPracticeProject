@@ -4,7 +4,6 @@ import com.example.MyFirstPracticeProject.ExceptionHandler.UserNotFoundException
 import com.example.MyFirstPracticeProject.model.User;
 import com.example.MyFirstPracticeProject.repository.HelloRepository;
 import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -25,18 +24,22 @@ public class HelloService {
         return users;
     }
 
-    public Optional<User> getUserById(int id) {
-        Optional<User> u = repo.findById(id);
-        if(u != null) return u;
-        throw new UserNotFoundException("user not found");
+    public User getUserById(int id) {
+        return repo.findById(id).orElseThrow(() -> new UserNotFoundException("user not found"));
     }
 
-    public void addUser(@Valid User u) {
-        repo.save(u);
+    public User addUser(@Valid User u) {
+        return repo.save(u);
     }
 
-    public ResponseEntity<?> deleteById(int id) {
+    public Optional<User> deleteById(int id) {
+        Optional<User> u = Optional.ofNullable(repo.findById(id).orElseThrow(() -> new UserNotFoundException("user not found to be deleted")));
         repo.deleteById(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return u;
+    }
+
+    public User updateUserById(User u, int id) {
+        Optional<User> t = Optional.ofNullable(repo.findById(id).orElseThrow(() -> new UserNotFoundException("user not found to be updated  ")));
+        return repo.save(u);
     }
 }
