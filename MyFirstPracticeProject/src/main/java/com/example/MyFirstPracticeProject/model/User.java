@@ -1,16 +1,25 @@
 package com.example.MyFirstPracticeProject.model;
 
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+@Entity
+@Table(name = "users")
 public class User {
 
-    @Min(value = 0, message = "value must be greated than 0")
+    @Id
+//    @Min(value = 0, message = "value must be greated than 0")
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @NotBlank(message = "name is required")
     private String name;
+
+    User(){
+
+    }
 
     public int getId() {
         return id;
