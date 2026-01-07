@@ -2,6 +2,7 @@ package com.example.MyFirstPracticeProject.model;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -21,4 +22,11 @@ public class User {
     private Integer id;
     @NotBlank(message = "name is required")
     private String name;
+    @NotBlank(message = "email cant be blank")
+    @Email
+    private String email;
+    @NotNull(message = "age should not be null")
+    @Min(value = 0)
+    private Integer age;
+
 }

@@ -42,4 +42,12 @@ public class HelloService {
         Optional<User> t = Optional.ofNullable(repo.findById(id).orElseThrow(() -> new UserNotFoundException("user not found to be updated  ")));
         return repo.save(u);
     }
+
+    public boolean checkUserExistsById(int id) {
+        return repo.existsById(id);
+    }
+
+    public List<User> getNameStartsWith(String s) {
+        return repo.findByNameLike("%"+s+"%");
+    }
 }

@@ -80,4 +80,14 @@ public class HelloController {
         User t = service.updateUserById(u,id);
         return ResponseEntity.ok().body(t);
     }
+
+    @GetMapping("/existsUser/{id}")
+    public boolean checkUserExistsById(@PathVariable int id){
+        return service.checkUserExistsById(id);
+    }
+
+    @GetMapping("/getUsersWithName")
+    public ResponseEntity<List<User>> getNameStartsWith(@RequestParam String s){
+        return new ResponseEntity<>(service.getNameStartsWith(s),HttpStatus.OK);
+    }
 }

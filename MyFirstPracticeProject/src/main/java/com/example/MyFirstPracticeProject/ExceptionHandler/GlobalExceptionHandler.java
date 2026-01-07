@@ -20,7 +20,10 @@ public class GlobalExceptionHandler {
         Map<String,String> errors = new HashMap<>();
 
         ex.getBindingResult().getFieldErrors()
-                .forEach(error -> errors.put(error.getField(),error.getDefaultMessage()));
+                .forEach(error -> {
+                    errors.put(error.getField(),error.getDefaultMessage());
+                    System.out.println(error.getDefaultMessage());
+                });
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 
