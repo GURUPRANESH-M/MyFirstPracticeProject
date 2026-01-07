@@ -75,7 +75,7 @@ public class HelloController {
         return new ResponseEntity<>(u,HttpStatus.OK);
     }
 
-    @PostMapping("/updateUser/{id}")
+    @PutMapping("/updateUser/{id}")
     public ResponseEntity<User> updateUserById(@Valid @RequestBody User u,@PathVariable int id){
         User t = service.updateUserById(u,id);
         return ResponseEntity.ok().body(t);
