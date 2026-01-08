@@ -4,6 +4,8 @@ import com.example.MyFirstPracticeProject.ExceptionHandler.UserNotFoundException
 import com.example.MyFirstPracticeProject.model.User;
 import com.example.MyFirstPracticeProject.repository.HelloRepository;
 import jakarta.validation.Valid;
+import org.jspecify.annotations.Nullable;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -49,5 +51,38 @@ public class HelloService {
 
     public List<User> getNameStartsWith(String s) {
         return repo.findByNameLike("%"+s+"%");
+    }
+
+    public List<User> findByName(String name) {
+        return repo.findByName(name);
+    }
+
+    public User findByEmail(String email) {
+        return repo.findByEmail(email);
+    }
+
+    public List<User> findByAge(int age) {
+        return repo.findByAge(age);
+    }
+
+    public List<User> getUsersByNameAndAge(String name, int age) {
+        return repo.findByNameAndAge(name,age);
+    }
+
+    public List<User> getUsersByNameOrAge(String name, int age) {
+        return repo.findByNameOrAge(name, age);
+    }
+
+    public List<User> getUsersByAgeBetweenStartAndEnd(int start, int end) {
+        return repo.findByAgeBetween(start, end);
+    }
+
+    public List<User> getUsersByAgeInAsc(int age) {
+        return repo.findByAgeGreaterThanOrderByNameAsc(age);
+    }
+
+
+    public List<User> get3UsersByAgeGreaterThan(int age) {
+        return repo.findFirst3ByAgeGreaterThan(age);
     }
 }

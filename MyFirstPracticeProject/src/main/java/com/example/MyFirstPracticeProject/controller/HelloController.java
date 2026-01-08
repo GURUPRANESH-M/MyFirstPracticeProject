@@ -42,7 +42,7 @@ public class HelloController {
 
     @GetMapping("/created")
     public ResponseEntity<String> created(){
-        return ResponseEntity.status(HttpStatus.CREATED).
+        return ResponseEntity.status(HttpStatus.OK).
                 contentType(MediaType.APPLICATION_JSON).
                 body("Resource created");
     }
@@ -89,5 +89,47 @@ public class HelloController {
     @GetMapping("/getUsersWithName")
     public ResponseEntity<List<User>> getNameStartsWith(@RequestParam String s){
         return new ResponseEntity<>(service.getNameStartsWith(s),HttpStatus.OK);
+    }
+
+    @GetMapping("/getUsersByName")
+    public ResponseEntity<List<User>> getUsersByName(@RequestParam String name){
+        return new ResponseEntity<>(service.findByName(name),HttpStatus.OK);
+    }
+
+    @GetMapping("/getUsersByEmail")
+    public ResponseEntity<User> getUsersByEmail(@RequestParam String email){
+        return new ResponseEntity<>(service.findByEmail(email),HttpStatus.OK);
+    }
+
+    @GetMapping("/getUsersByAge")
+    public ResponseEntity<List<User>> getUsersByAge(@RequestParam int age){
+        return new ResponseEntity<>(service.findByAge(age),HttpStatus.OK);
+    }
+
+    @GetMapping("/name-and-age")
+    public ResponseEntity<List<User>> getUsersByNameAndAge(String name,int age){
+        return ResponseEntity.ok().body(service.getUsersByNameAndAge(name,age));
+    }
+
+    @GetMapping("/name-or-age")
+    public ResponseEntity<List<User>> getUsersByNameOrAge(String name,int age){
+        return ResponseEntity.ok().body(service.getUsersByNameOrAge(name,age));
+    }
+
+    @GetMapping("/age-between-start-and-end")
+    public ResponseEntity<List<User>> getUsersByAgeBetweenStartAndEnd(@RequestParam int start,@RequestParam int end){
+        return ResponseEntity.ok().body(service.getUsersByAgeBetweenStartAndEnd(start,end));
+
+    }
+
+    @GetMapping("/age-greater-than-order-by-name-asc")
+    public ResponseEntity<List<User>> getUsersByAgeInAsc(@RequestParam int age){
+        return new ResponseEntity<>(service.getUsersByAgeInAsc(age),HttpStatus.OK);
+
+    }
+
+    @GetMapping("/find-first-3-by-age-greater-than")
+    public ResponseEntity<List<User>> get3UsersByAgeGreaterThan(int age){
+        return new ResponseEntity<List<User>>(service.get3UsersByAgeGreaterThan(age),HttpStatus.OK);
     }
 }
