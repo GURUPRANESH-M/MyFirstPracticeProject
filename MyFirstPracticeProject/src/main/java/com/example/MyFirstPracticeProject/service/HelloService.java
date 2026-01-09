@@ -85,4 +85,12 @@ public class HelloService {
     public List<User> get3UsersByAgeGreaterThan(int age) {
         return repo.findFirst3ByAgeGreaterThan(age);
     }
+
+    public User getUsersByNameAndEmail(String name, String email) {
+        return repo.findUserByNameAndEmail(name,email);
+    }
+
+    public List<User> getUsersStartsWithName(String name) {
+        return repo.searchByName(name);
+    }
 }

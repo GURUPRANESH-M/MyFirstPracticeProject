@@ -132,4 +132,14 @@ public class HelloController {
     public ResponseEntity<List<User>> get3UsersByAgeGreaterThan(int age){
         return new ResponseEntity<List<User>>(service.get3UsersByAgeGreaterThan(age),HttpStatus.OK);
     }
+
+    @GetMapping("/name-and-email")
+    public ResponseEntity<User> getUsersByNameAndEmail(@RequestParam String name, @RequestParam String email){
+        return new ResponseEntity<>(service.getUsersByNameAndEmail(name,email),HttpStatus.OK);
+    }
+
+    @GetMapping("/users-starts-with-name")
+    public ResponseEntity<List<User>> getUsersStartsWithName(@RequestParam String name){
+        return new ResponseEntity<>(service.getUsersStartsWithName(name),HttpStatus.OK);
+    }
 }
