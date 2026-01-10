@@ -57,7 +57,7 @@ public class HelloController {
         return "Welcome " + name;
     }
 
-    @GetMapping("/getUser/{id}")
+    @GetMapping("/user/{id}")
     public ResponseEntity<User> getUserById(@PathVariable int id){
         User u = service.getUserById(id);
         return new ResponseEntity<>(u,HttpStatus.OK);
